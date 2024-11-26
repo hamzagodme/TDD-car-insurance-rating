@@ -6,8 +6,7 @@ const getCarValue = async (req, res) => {
     amt = calcCarValue(model, year);
     res.json({ car_value: amt });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
+    res.json({ error: err });
   }
 };
 
@@ -19,22 +18,30 @@ const getCarValue = async (req, res) => {
  * @returns the value of a car for a given model and year, formula used (model*100+year).
  */
 function calcCarValue(model, year) {
-  return modelValue(model) * 100 + year;
+  if (isNaN(year) || typeof year === "string")
+    throw "year should be a numeric value";
+
+  if (!isNaN(model)) return year;
+  else {
+    return modelValue(model) * 100 + year;
+  }
 }
 
 /**
  * modelValue - calculates the car model numeric value  based on its A-Z position
  * @param model
- * @returns numeric value of a car name 
+ * @returns numeric value of a car name
  */
 function modelValue(model) {
+  // if carModel includes ("#!@$%^^&*")
   carModel = model.toUpperCase();
-
   let carValue = 0;
   for (let i = 0; i < carModel.length; i++) {
     asciiValue = carModel.charCodeAt(i);
-    position = asciiValue - 64;
-    carValue = carValue + position;
+    if (asciiValue > 64 && asciiValue < 91) {
+      position = asciiValue - 64;
+      carValue = carValue + position;
+    }
   }
   return carValue;
 }
