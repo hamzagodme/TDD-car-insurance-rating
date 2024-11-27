@@ -22,6 +22,8 @@ function calcCarValue(model, year) {
     throw "year should be a numeric value";
 
   if (!isNaN(model)) return year;
+  if (/[^a-zA-Z0-9\s-]/.test(model))
+    throw "Model should not contain special characters";
   else {
     return modelValue(model) * 100 + year;
   }
@@ -33,7 +35,6 @@ function calcCarValue(model, year) {
  * @returns numeric value of a car name
  */
 function modelValue(model) {
-  // if carModel includes ("#!@$%^^&*")
   carModel = model.toUpperCase();
   let carValue = 0;
   for (let i = 0; i < carModel.length; i++) {
