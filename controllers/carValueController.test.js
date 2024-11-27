@@ -22,8 +22,13 @@ describe("Car Value based on model and year", () => {
     expect(calcCarValue("CK-100", 2013)).toBe(3413);
   });
   it("should return an error if model includes a special character", () => {
-    expect(() => calcCarValue("Corolla$$",2019)).toThrow(
+    expect(() => calcCarValue("Corolla$$", 2019)).toThrow(
       "Model should not contain special characters"
+    );
+  });
+  it("should return an error if year includes a negative number", () => {
+    expect(() => calcCarValue("Raptor", -245)).toThrow(
+      "Only cars purchased between Year(2004-2024) can be insured"
     );
   });
 });

@@ -20,6 +20,8 @@ const getCarValue = async (req, res) => {
 function calcCarValue(model, year) {
   if (isNaN(year) || typeof year === "string")
     throw "year should be a numeric value";
+  if (year>2024|year<2004)
+    throw "Only cars purchased between Year(2004-2024) can be insured";
 
   if (!isNaN(model)) return year;
   if (/[^a-zA-Z0-9\s-]/.test(model))
