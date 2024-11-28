@@ -9,7 +9,7 @@ const app = require("../server");
 // 4	Empty input --> "" --> { "error": "Invalid input: claim_history must be a non-empty string" }
 // 5	Null input --> null --> { "error": "Invalid input: claim_history must be a non-empty string" }
 // 6	Case-insensitivity test --> "Crash crash CRASH!!!" --> { "risk_rating": 3 }
-// 7	All different keywords --> "I collided with another car, smashed my bumper, and crashed into a pole. Such a bad day!" --> { "risk_rating": 4 }
+// 7	All different keywords --> "I collided with another car, smashed my bumper, scratched the rims and crashed into a pole. Such a bad day!" --> { "risk_rating": 5 }
 // 8	Exceeds maximum risk rating (capped at 5) --> "I crashed my car 10 times this year." --> { "risk_rating": 5 }
 // 9	Negative: Input is a number --> 12345 --> { "error": "Invalid input: claim_history must be a non-empty string" }
 
