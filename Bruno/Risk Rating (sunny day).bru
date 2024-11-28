@@ -1,0 +1,22 @@
+meta {
+  name: Risk Rating (sunny day)
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://127.0.0.1:8000/api/risk-rating
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+    {
+      "claim_history": "My only claim was a crash into my house's garage door that left a scratch on my car. There are no other crashes."
+    }
+}
