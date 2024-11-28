@@ -31,4 +31,9 @@ describe("Car Value based on model and year", () => {
       "Only cars purchased between Year(2004-2024) can be insured"
     );
   });
+  it("should return an error if year is out of range", () => {
+    expect(() => calcCarValue("Outlander",2050)).toThrow(
+      "Only cars purchased between Year(2004-2024) can be insured"
+    );
+  });
 });
