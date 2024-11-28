@@ -1,0 +1,22 @@
+meta {
+  name: Risk Rating (multiple keywords)
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/risk-rating
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+   {
+      "claim_history": "I bumped another car and scratched my fender."
+    }
+}
