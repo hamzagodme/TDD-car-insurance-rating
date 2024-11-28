@@ -1,13 +1,19 @@
 const { calculateRiskRating } = require("../models/riskRatingModel");
 
-const getRiskRating = (req, res) => {
-  try {
-    const { claim_history } = req.body;
-    const riskRating = calculateRiskRating(claim_history);
-    res.status(200).json({ risk_rating: riskRating });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+exports.getRiskRating = (req, res) => {
+  const { claim_history } = req.body;
 
-module.exports = { getRiskRating };
+  // Validate input
+  if (
+    !claim_history ||
+    typeof claim_history !== "string" ||
+    !claim_history.trim()
+  ) {
+    return res.status(400).json({
+      error: "Invalid input: claim_history must be a non-empty string",
+    });
+  }
+
+  const riskRating = calculateRiskRating(claim_history);
+  res.status(200).json({ risk_rating: riskRating });
+};
