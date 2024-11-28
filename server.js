@@ -18,9 +18,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-apiRouter.use(carValueRoutes);
-apiRouter.use(quoteRoutes);
-apiRouter.use(riskRatingRoutes);
+apiRouter.use("/car-value", carValueRoutes); // Prefix carValueRoutes
+apiRouter.use("/quote", quoteRoutes);        // Prefix quoteRoutes
+apiRouter.use("/risk-rating", riskRatingRoutes); // Prefix riskRatingRoutes
 
 // Prefix all routes with "/api"
 app.use("/api", apiRouter);
@@ -28,7 +28,7 @@ app.use("/api", apiRouter);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Something went wrong!");
+  res.status(500).json({ error: "Something went wrong!" });
 });
 
 // Server
