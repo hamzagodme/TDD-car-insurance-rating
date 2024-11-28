@@ -70,10 +70,10 @@ describe("Claim History to Risk Rating API", () => {
   test("All different keywords", async () => {
     const response = await request(app).post("/api/risk-rating").send({
       claim_history:
-        "I collided with another car, smashed my bumper, and crashed into a pole. Such a bad day!",
+        "I collided with another car, smashed my bumper, scratched the rims and crashed into a pole. Such a bad day!",
     });
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ risk_rating: 4 });
+    expect(response.body).toEqual({ risk_rating: 5 });
   });
 
   test("Exceeds maximum risk rating", async () => {

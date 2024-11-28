@@ -22,6 +22,9 @@ function calculateRiskRating(claimHistory) {
   const digitRegex = new RegExp(/[0-9]+/, "g");
   const occurances = lowerCaseHistory.match(digitRegex) || ["0"];
   console.log(occurances);
+
+  // @ ?.map ensures that map() is only called if occurances is not null or undefined.
+  // @ If occurances is valid, map() will process its elements.
   const totalOccurances = occurances
     ?.map((occuranceDetection) => Number.parseInt(occuranceDetection))
     .reduce((acc, currentValue) => acc + currentValue, 0);
