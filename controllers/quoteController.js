@@ -8,9 +8,8 @@ exports.calculateQuote = (req, res) => {
         risk_rating < 1 || 
         risk_rating > 5
     ) {
-        return res.status(400).json({ error: "bad input values" });
+        return res.status(400).json({ error: "need to be eith + or down for risk" });
     }
-
     try {
         const yearly_premium = (car_value * risk_rating) / 100;
         const monthly_premium = yearly_premium / 12;
@@ -19,6 +18,6 @@ exports.calculateQuote = (req, res) => {
             yearly_premium: parseFloat(yearly_premium.toFixed(2)),   
         });
     } catch (error) {
-        return res.status(500).json({ error: "An unexpected error occurred." });
+        return res.status(500).json({ error: "Its not working :(" });
     }
 };
